@@ -1,7 +1,9 @@
 from datetime import datetime
-from typing import Literal
 
 from pydantic import BaseModel, EmailStr
+
+from base.entities import TransactionType
+
 
 class UserCredentials(BaseModel):
     """Модель учетных данных пользователя."""
@@ -34,4 +36,4 @@ class Transaction(BaseModel):
     id: int
     account_id: int
     amount: float
-    transaction_type: Literal["income", "expense"]
+    transaction_type: TransactionType
