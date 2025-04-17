@@ -5,7 +5,6 @@ from langchain_community.vectorstores import FAISS
 
 from ..adapters.repositories import (
     BM25RetrieverRepository,
-    FAISSRepository,
     LlamaCppRepository,
 )
 from ..domain.models import Chat, ChatType, Message, MessageData
