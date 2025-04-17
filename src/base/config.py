@@ -77,7 +77,7 @@ def get_max_tokens_for_model() -> int:
     return 5_000
 
 
-def get_n_relevant_docs_for_faiss() -> int:
+def get_n_relevant_docs() -> int:
     """Получение размера топа релевантных документов для извлечения."""
     if os.getenv("N_DOCS"):
         return int(os.getenv("N_DOCS"))
@@ -92,17 +92,6 @@ def get_embedding_model_path() -> str:
         )
         + "/"
         + os.getenv("EMBEDDING_MODEL_PATH")
-    )
-
-
-def get_faiss_store_path() -> str:
-    """Получение пути до векторной БД."""
-    return (
-        os.path.dirname(
-            os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        )
-        + "/"
-        + os.getenv("FAISS_PATH")
     )
 
 
@@ -123,9 +112,3 @@ class ChatTypeChoice(Enum):
     WITH_LLM = "with_llm"
     ONLY_RAG = "only_rag"
 
-
-class RagTypeChoice(Enum):
-    """Типы RAG-систем."""
-
-    FAISS = "faiss"
-    BM25 = "bm25"

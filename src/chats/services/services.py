@@ -1,7 +1,6 @@
 """Бизнес-логика."""
 
 from langchain_community.retrievers import BM25Retriever
-from langchain_community.vectorstores import FAISS
 
 from ..adapters.repositories import (
     BM25RetrieverRepository,

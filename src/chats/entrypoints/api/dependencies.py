@@ -8,8 +8,7 @@ from langchain_community.retrievers import BM25Retriever
 from base.config import (
     get_bm25_retriever_path,
     get_llm_url,
-    get_max_tokens_for_model,
-    get_n_relevant_docs_for_faiss,
+    get_max_tokens_for_model, get_n_relevant_docs,
 )
 from base.dependencies import SessionFactoryDependency
 from base.utils import load_retriever
@@ -44,7 +43,7 @@ def get_llm_service_with_bm25(
         llama_url=llama_url,
         store=store,
         max_tokens=get_max_tokens_for_model(),
-        n_relevant_docs=get_n_relevant_docs_for_faiss(),
+        n_relevant_docs=get_n_relevant_docs(),
     )
 
 

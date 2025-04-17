@@ -6,7 +6,6 @@ from fastapi import (
     APIRouter,
 )
 
-from base.config import RagTypeChoice
 from base.dependencies import (
     TokenDependency,
     UserServiceDependency,

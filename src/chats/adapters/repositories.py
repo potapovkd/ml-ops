@@ -4,7 +4,6 @@ import abc
 
 import httpx
 from langchain_community.retrievers import BM25Retriever
-from langchain_community.vectorstores import FAISS
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
