@@ -64,7 +64,7 @@ async def get_messages(
     return await service.get_messages(chat_id, data_from_token.id)
 
 
-@router.post("/chat/{chat_id}/", response_model=MessageResponse)
+@router.post("/{chat_id}/", response_model=MessageResponse)
 async def chat(
     chat_id: int,
     request: MessageRequest,
