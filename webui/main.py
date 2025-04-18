@@ -80,6 +80,18 @@ if st.button("Пополнить баланс"):
     except Exception as e:
         st.error(f"Ошибка пополнения баланса: {e}")
 
+if st.button("Получить историю транзакций"):
+    try:
+        endpoint = f"{API_BASE_URL}/users/transactions/"
+        headers = {"Authorization": f"Bearer {st.session_state.access_token}"}
+        response = requests.get(endpoint, headers=headers)
+        response.raise_for_status()
+        chats = response.json()
+        st.json(chats)
+    except Exception as e:
+        st.error(f"Ошибка получения истории транзакций: {e}")
+
+
 if st.button("Получить список чатов"):
     try:
         endpoint = f"{API_BASE_URL}/chats/"
@@ -111,7 +123,7 @@ if st.button("Создать чат"):
     else:
         st.warning("Выберите тип чата.")
 
-chat_id = st.number_input("ID чата:", min_value=1, step=1)
+chat_id = st.number_input("ID чата:", min_value=1, step=1, key="chat_id_for_message")
 message_text = st.text_area("Введите сообщение для отправки в чат:")
 
 if st.button("Отправить сообщение"):
@@ -129,3 +141,19 @@ if st.button("Отправить сообщение"):
             st.error(f"Ошибка отправки сообщения: {e}")
     else:
         st.warning("Укажите ID чата и текст сообщения.")
+
+chat_id = st.number_input("ID чата:", min_value=1, step=1, key="chat_id_for_history")
+if st.button("Получить историю сообщений"):
+    if chat_id:
+        try:
+            endpoint = f"{API_BASE_URL}/chats/{chat_id}/"
+            headers = {"Authorization": f"Bearer {st.session_state.access_token}"}
+            response = requests.get(endpoint, headers=headers)
+            response.raise_for_status()
+            result = response.json()
+            st.success("История сообщений успешно получена!")
+            st.json(result)
+        except Exception as e:
+            st.error(f"Ошибка получения истории сообщений: {e}")
+    else:
+        st.warning("Укажите ID чата.")
